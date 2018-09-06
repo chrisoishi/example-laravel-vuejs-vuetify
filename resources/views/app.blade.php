@@ -24,15 +24,13 @@ Frameworks
         </h1>
         <v-card>
             <v-layout row wrap>
-
                 <template v-for='frame in frameworks'>
                     <v-flex xs12 sm6 md4>
                         <v-container fill-height>
                             <v-card :color="frame.color" :class="frame.colortext" height="100%">
                                 <v-layout justify-space-between column fill-height>
                                     <v-flex>
-                                        <v-img :src="frame.img"
-                                            aspect-ratio="2.75"></v-img>
+                                        <v-img :src="frame.img" aspect-ratio="2.75"></v-img>
                                         <v-card-title primary-title>
                                             <div>
                                                 <h3 class="headline mb-0" v-html='frame.title'></h3>
@@ -126,16 +124,17 @@ Menu
 
 @section('l-menu')
 <v-list>
-    <v-subheader>Sub menu</v-subheader>
+    <v-subheader>Menu Example</v-subheader>
     <v-divider></v-divider>
-    <v-list-tile>
-        <v-list-tile-action>
-            <v-checkbox></v-checkbox>
-        </v-list-tile-action>
-        <v-list-tile-content>
-            oi
-        </v-list-tile-content>
-    </v-list-tile>
+    <template v-for='item in menu'>
+        <v-list-tile @click='item.link'>
+            <v-list-tile-action>
+                <v-icon>@{{item.icon}}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>@{{item.text}}</v-list-tile-content>
+        </v-list-tile>
+    </template>
+
 </v-list>
 @endsection
 
@@ -181,16 +180,10 @@ Vue
         data: {
             drawer: null,
             tips: [{
-                    desc: "Vue variables on Blade",
-                    using: "Use @ before &#123;&#123; &#125;&#125;"
-                },
-                {
-                    desc: "Vue variables on Blade",
-                    using: "Use @ before"
-                }
-            ],
-            frameworks:[
-                {
+                desc: "Vue variables on Blade template",
+                using: "Use @ before &#123;&#123; &#125;&#125;"
+            }],
+            frameworks: [{
                     color: 'blue',
                     colortext: 'white--text',
                     img: "https://cdn.vuetifyjs.com/images/logos/vuetify-logo-300.png",
@@ -202,7 +195,7 @@ Vue
                     color: 'white',
                     colortext: 'black--text',
                     img: "https://cdn.freebiesupply.com/logos/large/2x/laravel-1-logo-png-transparent.png",
-                    title: 'Vue.js',
+                    title: 'Laravel',
                     desc: "Laravel is free, open-source and one of the more popular PHP web framework based on the model–view–controller (MVC) architectural pattern. It is created by Taylor Otwell, intended to reduce the cost of initial development and improve quality of your code by defining industry standard design practices. Using Laravel, you can save hours of development time and reduce thousands of lines of code compared raw PHP.",
                     doc: "https://laravel.com/docs/5.7"
                 },
@@ -213,6 +206,21 @@ Vue
                     title: 'Vue.js',
                     desc: "Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.",
                     doc: "https://vuejs.org/v2/guide/"
+                }
+            ],
+            menu: [{
+                    icon: "home",
+                    text: "Home",
+                    link: function () {
+                        window.location = '##'
+                    }
+                },
+                {
+                    icon: "face",
+                    text: "User",
+                    link: function () {
+                        window.location = '##'
+                    }
                 }
             ]
         },
