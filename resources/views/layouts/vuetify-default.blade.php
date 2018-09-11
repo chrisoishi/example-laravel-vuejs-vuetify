@@ -18,11 +18,10 @@
         </v-app>
     </div>
     @yield("content")
-
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('vuetify/vue.min.js')}}"></script>
     <script src="{{asset('vuetify/vuetify.min.js')}}"></script>
     @yield("js")
-
 </body>
 
 </html>
